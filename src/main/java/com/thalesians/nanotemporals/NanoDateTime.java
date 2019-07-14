@@ -31,7 +31,7 @@ public final class NanoDateTime implements Comparable<NanoDateTime>, Serializabl
 			NanoDateTime.fromNanosecondsSinceEpoch(MAX_NANOSECONDS_SINCE_EPOCH); // 2262.04.11T23:47:16.854775807;
 	
 	private static NanoDateTimeFormat nanoDateTimeFormat =
-			NanoDateTimeFormat.of(NanoDateTimeFormat.DEFAULT_DATETIME_PATTERN, false);
+			NanoDateTimeFormat.of(TemporalArithmetics.UTC, NanoDateTimeFormat.DEFAULT_DATETIME_PATTERN, false);
 	
 	private final long nanosecondsSinceEpoch;
 	
