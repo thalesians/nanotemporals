@@ -1,5 +1,7 @@
 package com.thalesians.nanotemporals;
 
+import com.google.common.collect.ImmutableList;
+
 /**
  * The static methods of this class serve as utilities for dealing with temporal objects, such as {@link NanoDateTime},
  * {@link NanoDate}, {@link NanoTime}, and {@link NanoTimeDelta}.
@@ -19,8 +21,28 @@ public class NanoTemporals {
 		return left.isStrictlyBefore(right) ? left : right;
 	}
 	
+	public static NanoDateTime min(ImmutableList<NanoDateTime> datetimes) {
+		NanoDateTime min = null;
+		for (NanoDateTime datetime : datetimes) {
+			if (min == null || (datetime != null && datetime.isStrictlyBefore(min))) {
+				min = datetime;
+			}
+		}
+		return min;
+	}
+	
 	public static NanoDateTime max(NanoDateTime left, NanoDateTime right) {
 		return right.isStrictlyAfter(left) ? right : left;
+	}
+	
+	public static NanoDateTime max(ImmutableList<NanoDateTime> datetimes) {
+		NanoDateTime max = null;
+		for (NanoDateTime datetime : datetimes) {
+			if (max == null || (datetime != null && datetime.isStrictlyAfter(max))) {
+				max = datetime;
+			}
+		}
+		return max;
 	}
 	
 	public static boolean between(NanoDateTime datetime, NanoDateTime lower, NanoDateTime upper) {

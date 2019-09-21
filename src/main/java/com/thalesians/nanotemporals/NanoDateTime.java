@@ -28,7 +28,8 @@ public final class NanoDateTime implements Comparable<NanoDateTime>, Serializabl
 	public static final NanoDateTime MIN = NanoDateTime.fromNanosecondsSinceEpoch(MIN_NANOSECONDS_SINCE_EPOCH);  // 1900.01.01T00:00:00.000000000;
 	public static final NanoDateTime MAX = NanoDateTime.fromNanosecondsSinceEpoch(MAX_NANOSECONDS_SINCE_EPOCH);  // 2262.04.11T23:47:16.854775807;
 	
-	private static NanoDateTimeFormat nanoDateTimeFormat = NanoDateTimeFormat.of(TemporalArithmetics.UTC, NanoDateTimeFormat.DEFAULT_DATETIME_PATTERN, false);
+	private static NanoDateTimeFormat nanoDateTimeFormat =
+			NanoDateTimeFormat.of(TemporalArithmetics.UTC, NanoDateTimeFormat.DEFAULT_DATETIME_PATTERN, false);
 	
 	private final long nanosecondsSinceEpoch;
 	
