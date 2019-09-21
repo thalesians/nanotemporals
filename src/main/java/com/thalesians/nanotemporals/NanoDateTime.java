@@ -25,13 +25,10 @@ public final class NanoDateTime implements Comparable<NanoDateTime>, Serializabl
 	private static final long MIN_NANOSECONDS_SINCE_EPOCH = -2208988800000000000L;
 	private static final long MAX_NANOSECONDS_SINCE_EPOCH = 9223372036854775807L;
 	
-	public static final NanoDateTime MIN =
-			NanoDateTime.fromNanosecondsSinceEpoch(MIN_NANOSECONDS_SINCE_EPOCH); // 1900.01.01T00:00:00.000000000;
-	public static final NanoDateTime MAX =
-			NanoDateTime.fromNanosecondsSinceEpoch(MAX_NANOSECONDS_SINCE_EPOCH); // 2262.04.11T23:47:16.854775807;
+	public static final NanoDateTime MIN = NanoDateTime.fromNanosecondsSinceEpoch(MIN_NANOSECONDS_SINCE_EPOCH);  // 1900.01.01T00:00:00.000000000;
+	public static final NanoDateTime MAX = NanoDateTime.fromNanosecondsSinceEpoch(MAX_NANOSECONDS_SINCE_EPOCH);  // 2262.04.11T23:47:16.854775807;
 	
-	private static NanoDateTimeFormat nanoDateTimeFormat =
-			NanoDateTimeFormat.of(NanoDateTimeFormat.DEFAULT_DATETIME_PATTERN, false);
+	private static NanoDateTimeFormat nanoDateTimeFormat = NanoDateTimeFormat.of(TemporalArithmetics.UTC, NanoDateTimeFormat.DEFAULT_DATETIME_PATTERN, false);
 	
 	private final long nanosecondsSinceEpoch;
 	
@@ -42,8 +39,7 @@ public final class NanoDateTime implements Comparable<NanoDateTime>, Serializabl
 	}
 	
 	public static NanoDateTime fromNanosecondsSinceEpoch(long nanosecondsSinceEpoch) {
-		checkArgument(MIN_NANOSECONDS_SINCE_EPOCH <= nanosecondsSinceEpoch &&
-				nanosecondsSinceEpoch <= MAX_NANOSECONDS_SINCE_EPOCH);
+		checkArgument(MIN_NANOSECONDS_SINCE_EPOCH <= nanosecondsSinceEpoch && nanosecondsSinceEpoch <= MAX_NANOSECONDS_SINCE_EPOCH);
 		NanoDateTime dt = CACHE.getIfPresent(nanosecondsSinceEpoch);
 		if (dt == null) {
 			dt = new NanoDateTime(nanosecondsSinceEpoch);
